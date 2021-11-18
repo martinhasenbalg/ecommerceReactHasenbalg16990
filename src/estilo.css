@@ -21,3 +21,23 @@ code {
   text-align: center;
   
 }
+
+.input{
+  width: 30px;  
+  padding: 5px;
+  text-align: center;
+}
+.button{
+  text-align: center;
+  width: 50px;
+  
+}
+
+div{
+  text-align: center;
+}
+
+.row {
+  align-items: center;
+  justify-content: center;
+}
