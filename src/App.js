@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
 
 
@@ -7,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1 className="proxi">Muy pronto...</h1>
+      <ItemListContainer  saludo="Proximamente"/>
       
     </div>
   );
