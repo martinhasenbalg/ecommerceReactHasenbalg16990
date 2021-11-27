@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Item from '../components/Item';
-import productos from '../components/Data/Productos';
+import { useParams } from "react-router-dom";
+import Item from './Item';
+import productos from '../Data/Productos';
 import { Container,Row } from "react-bootstrap";
 import Swal from 'sweetalert';
 
 const ItemList = () => {
 
-    const [ResultProductos, setResultProductos] = useState([]);
+    const { categoriaId } = useParams();
+    const [resultProductos, setResultProductos] = useState([]);
 
     function onAdd(id, producto, cantidad) {
         Swal({
@@ -17,34 +19,44 @@ const ItemList = () => {
     }
 
     const getProductos = () =>
-        new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (productos.length > 0) {
-                    resolve(productos);
-                } else {
-                    reject('No se encontraron productos');
-                }
-            }, 2000);
-        });
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (productos.length <= 0) {
+          reject("No se encontraron productos");
+        }
+        if (categoriaId > 0) {
+            console.log("por categoria: " + categoriaId);
+          const productosCategoria = productos.filter(
+            (producto) => producto.categoriaId === parseInt(categoriaId)
+          );
+          resolve(productosCategoria);
+        } else {
+          resolve(productos);
+        }
+      }, 2000);
+    });
 
     useEffect(() => {
         getProductos().then(
-            (result) => { setResultProductos(result); },
-            (err) => { setResultProductos([]) }
+          (result) => {setResultProductos(result);},
+          (err) => {
+            console.log(err);
+            setResultProductos([]);
+          }
         );
-    }, []);
+      },[categoriaId]);
 
-    return (
+      return (
         <div>
-            <Container>
-                <Row>
-                    {ResultProductos.map((producto) =>
-                        <Item item={producto} onAdd={onAdd} initial={1} />
-                    )}
-                </Row>
-            </Container>
+          <Container>
+            <Row>
+              {resultProductos.map((producto) => (
+                <Item key={producto.id} item={producto} onAdd={onAdd} initial={1} />
+              ))}
+            </Row>
+          </Container>
         </div>
-    );
+      );
 
 }
 

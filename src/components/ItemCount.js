@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Swal from 'sweetalert';
 import { Container, Card, Row, Col, Form, Button } from "react-bootstrap";
+import Swal from 'sweetalert';
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(parseInt(initial));
