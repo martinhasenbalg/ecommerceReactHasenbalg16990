@@ -44,7 +44,9 @@ const ItemDetail = ({ item }) => {
                             </div>
                             <div id="div-terminar-compra" style={{'display':'none'}}>
                                 <hr></hr>
-                                <Button variant="warning"><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} />Termina tu Compra</NavLink></Button>
+                                <Button variant="warning"><NavLink to={ `/carrito` }>
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                Termina tu Compra</NavLink></Button>
                                 <br></br>
                             </div>
                             <hr></hr>

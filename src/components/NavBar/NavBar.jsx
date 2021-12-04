@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import { NavLink } from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import { faHome, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CartWidget from '../CartWidget';
 
 const NavBar = () => {
+
+  const { items, cantidades } = useContext(CartContext);
+
+    
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
@@ -14,10 +19,11 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
+            <Nav.Link><NavLink to={ `/` }><FontAwesomeIcon icon={faHome} /> Inicio</NavLink></Nav.Link>
             <Nav.Link><NavLink to={ `/categoria/1` }>Vinos</NavLink></Nav.Link>
             <Nav.Link><NavLink to={ `/categoria/2` }>Cervezas</NavLink></Nav.Link>
             <Nav.Link><NavLink to={ `/categoria/3` }>Gourmet</NavLink></Nav.Link>
-            <Nav.Link><NavLink to={ `/carrito` }>Mi Carrito</NavLink></Nav.Link>
+            {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} /> { cantidades }</NavLink></Nav.Link>}
             <NavDropdown title="Mas" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Sobre Nosotros</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Promociones</NavDropdown.Item>
