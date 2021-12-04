@@ -1,59 +1,46 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import { Card, Col, Form, Button } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { NavLink } from 'react-router-dom';
+import { Card, Col } from "react-bootstrap";
+import ItemCount from "./ItemCount";
+import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert';
 
 
-const Item = ({ stock, initial, onAdd, item }) => {
-    const [count, setCount] = useState(parseInt(initial));
-    const [disponible] = useState(parseInt(item.stock));
+const Item = ({ mostrarCarrito, item }) => {
     const [producto] = useState(item);
+    const { addItem } = useContext(CartContext);
 
-    const sumar = () => {
-        if (count < disponible) {
-            setCount(count + 1);
-        } else {
-            Swal({
-                title: 'No Disponible',
-                text: 'Sin stock para la cantidad seleccionada',
-                icon: 'error',
-                
-            })
-        }
+    function onAdd(producto, cantidad) {
+        addItem(producto,cantidad); //addItem este viene del context            
+        Swal({
+            title: 'Item Agregado',
+            text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
+            icon: 'success',
+                });
+        mostrarCarrito(producto, cantidad);
     };
-
-    const restar = () => {
-        if (count > 1) {
-            setCount(count - 1);
-        } else {
-            return false;
-        }
-    };
-
+    
     return (
         <>
-            <Col xs={3} key={producto.id}>
+            <Col xs={3}>
                 <Card>
                     <Card.Body>
                         <Card.Title></Card.Title>
                         <Card.Text>
-                            <Link to={ `/producto/${producto.id}` }><span className="h3">{producto.title}</span></Link>
-                            <p>{producto.description}</p>
+                            <NavLink to={ `/producto/${producto.id}` }><span className="h3">{producto.title}</span></NavLink>
                             <p>Precio: $ {producto.price}</p>
                             <hr />
                             <div className="div-img-datos">
-                            <Link to={ `/producto/${producto.id}` }>
-                            <img src={producto.imgUrl} width="250" height="250" />
-                            </Link>
+                            <NavLink to={ `/producto/${producto.id}` }>
+                            <img src={producto.imgUrl} width="150" height="150" alt={producto.title} />
+                            </NavLink>
                             <br></br>
-                            <Button variant="danger" className="button" size="sm" onClick={restar}>-</Button>
-                            <Form.Control type="text" className="input" size="sm" value={count} readOnly="readonly" min="0" />
-                            <Button variant="success" className="button" size="sm" onClick={sumar}>+</Button>
+                            <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
+                                <ItemCount initial={1} item={producto} onAdd={onAdd} />
+                            </div>
+                            <p>Disponibles: {producto.stock}</p>
                             <hr></hr>
-                            </div>
-                            <div className="d-grid gap-2">
-                                <Button variant="primary" onClick={() => onAdd(producto.id,producto.title, count)}>Agregar al carrito</Button>
-                            </div>
+                            </div>  
                         </Card.Text>
                     </Card.Body>
                 </Card>
