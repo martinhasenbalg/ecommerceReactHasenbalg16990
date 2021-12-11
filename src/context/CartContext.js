@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 
+
 export const CartContext = createContext([]);
 
 export const CartProvider = ({ defaultValue = false, children }) => {
@@ -25,11 +26,10 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       setItems(newItems);
     }
     totalizar();
-    //console.log(items);
   };
 
   const removeItem = (id) => {
-    const newItems = items.filter((item) => item.item.id != id);
+    const newItems = items.filter((item) => item.item.id !== id);
     setItems(newItems);
     totalizar();
   };
@@ -51,7 +51,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
   const totalizar = () => {
     let auxcants = 0;
     let auximps = 0;
-    items.map((item)=>{
+    items.map(item => {
      auxcants = auxcants + item.cantidad;
      auximps = auximps + (item.cantidad * item.item.price);      
     });
@@ -61,7 +61,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
 
   useEffect(() => {
     totalizar();
-  }, [items]);
+  },[items]);
 
   return (
     <CartContext.Provider value={{ items,cantidades,importeTotal, removeItemCant, addItem, removeItem, clearAllItems }}>

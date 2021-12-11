@@ -7,7 +7,8 @@ const app = firebase.initializeApp({
     projectId: "drinkandeat-22253",
     storageBucket: "drinkandeat-22253.appspot.com",
     messagingSenderId: "411980722201",
-    appId: "1:411980722201:web:b33f4048c5b3e52dcafa88",    
+    appId: "1:411980722201:web:b33f4048c5b3e52dcafa88",
+    measurementId: "G-BRVWVM6Z5E"    
 });
 
 export const getFirebase = () => app;

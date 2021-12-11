@@ -10,7 +10,7 @@ import Loading from "./Loading";
 const ItemList = () => {
   const { categoriaId } = useParams();
   const [resultProductos, setResultProductos] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   function mostrarCarrito(producto, cantidad) {
 
@@ -83,6 +83,11 @@ const ItemList = () => {
           .finally(() => setLoading(false));
     }
   };
+
+  useEffect(() => {
+    getProductos();
+    console.log(resultProductos);
+  }, [categoriaId]);
 
   return (
     <Fragment>

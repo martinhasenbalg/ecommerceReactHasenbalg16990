@@ -9,7 +9,7 @@ import { getFirestore } from "../firebase/firebase";
 const ItemDetailContainer = () => {
   const { productoId } = useParams();
   const [ResultProductos, setResultProductos] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   // const getProducto = () =>
   //   new Promise((resolve, reject) => {

@@ -1,14 +1,14 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Router from './router/Router';
 import { CartProvider } from './context/CartContext';
 import './estilo.css'
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className="div-img-datos">
       <CartProvider>
         <Router />    
-      </CartProvider>  
+      </CartProvider>       
     </div>
   );
 }
