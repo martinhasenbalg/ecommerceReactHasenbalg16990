@@ -12,7 +12,7 @@ const ItemDetail = ({ item }) => {
     const { addItem } = useContext(CartContext);
     
     function onAdd(producto, cantidad) {
-        console.log('itemDetail',producto);
+        // console.log('itemDetail',producto);
         addItem(producto,cantidad);             
         Swal({
             title: 'Item Agregado',

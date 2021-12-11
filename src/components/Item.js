@@ -5,7 +5,6 @@ import ItemCount from "./ItemCount";
 import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert';
 
-
 const Item = ({ mostrarCarrito, item }) => {
     const [producto] = useState(item);
     const { addItem } = useContext(CartContext);

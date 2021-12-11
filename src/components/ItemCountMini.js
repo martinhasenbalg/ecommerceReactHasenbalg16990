@@ -1,5 +1,5 @@
 import React, { useState,useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,7 @@ import { faAngleDoubleDown,faAngleDoubleUp } from "@fortawesome/free-solid-svg-i
 const ItemCountMini = ({ initial, item }) => {
   const [count, setCount] = useState(parseInt(initial));
   const [disponible] = useState(parseInt(item.stock));
-  const { addItem, removeItemCant } = useContext(CartContext);
+  const { addItem, removeItem, removeItemCant } = useContext(CartContext);
  
   const sumar = () => {
     if (count < disponible) {
@@ -30,6 +30,7 @@ const ItemCountMini = ({ initial, item }) => {
       setCount(count - 1);
       removeItemCant(item.id,1);
     } else {
+      removeItem(item.id);
       return false;
     }
   };

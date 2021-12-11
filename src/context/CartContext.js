@@ -14,7 +14,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       cantidad: cantidad,
     };
     let duplicado = false;
-    items.map((itemCarrito) => {
+    items.map(itemCarrito => {
       if (itemCarrito.item.id === item.item.id) {
         itemCarrito.cantidad += item.cantidad;
         duplicado = true;
@@ -30,13 +30,12 @@ export const CartProvider = ({ defaultValue = false, children }) => {
 
   const removeItem = (id) => {
     const newItems = items.filter((item) => item.item.id != id);
-    console.log(newItems);
     setItems(newItems);
     totalizar();
   };
 
   const removeItemCant = (id,cant) => {
-    items.map((itemCarrito) => {
+    items.map(itemCarrito => {
       if (itemCarrito.item.id === id) {
         itemCarrito.cantidad -= cant;       
       }

@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 import { NavLink } from 'react-router-dom';
 
 const Cart = () => {
-  const { cantidades,importeTotal,items,clearAllItems } = useContext(CartContext);
+  const { importeTotal,items,clearAllItems } = useContext(CartContext);
   if(items.length<=0){
     return (
       <div>
