@@ -11,21 +11,6 @@ const ItemDetailContainer = () => {
   const [ResultProductos, setResultProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const getProducto = () =>
-  //   new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       setResultProductos([]);
-  //       if (productos.length > 0) {
-  //         const productoDetalle = productos.filter(
-  //           (producto) => producto.id === parseInt(productoId)
-  //         );
-  //         resolve(productoDetalle);
-  //       } else {
-  //         reject("No se encontraron productos");
-  //       }
-  //     }, 2000);
-  //   });
-
   const getProducto = () => {
     setLoading(true);
     const db = getFirestore();
@@ -51,20 +36,6 @@ const ItemDetailContainer = () => {
         });
     }
   };
-
-  // useEffect(() => {
-  //   setloading(true);
-  //   getProducto().then(
-  //     (result) => {
-  //       setloading(false);
-  //       setResultProductos(result);
-  //     },
-  //     (err) => {
-  //       setloading(false);
-  //       setResultProductos([]);
-  //     }
-  //   );
-  // }, [productoId]);
 
   useEffect(() => {
     getProducto();

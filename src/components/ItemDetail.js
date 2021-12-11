@@ -7,6 +7,8 @@ import Swal from 'sweetalert';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
+
+
 const ItemDetail = ({ item }) => {   
     const [producto] = useState(item); 
     const { addItem } = useContext(CartContext);

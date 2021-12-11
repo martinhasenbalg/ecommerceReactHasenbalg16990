@@ -16,38 +16,6 @@ const ItemList = () => {
 
   }
 
-  // const getProductos = () =>
-  //   new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       if (productos.length <= 0) {
-  //         reject("No se encontraron productos");
-  //       }
-  //       if (categoriaId > 0) {
-  //         const productosCategoria = productos.filter(
-  //           (producto) => producto.categoriaId === parseInt(categoriaId)
-  //         );
-  //         resolve(productosCategoria);
-  //       } else {
-  //         resolve(productos);
-  //       }
-  //     }, 2000);
-  //   });
-
-  // useEffect(() => {
-  //   setloading(true);
-  //   getProductos().then(
-  //     (result) => {
-  //       setloading(false);
-  //       setResultProductos(result);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //       setloading(false);
-  //       setResultProductos([]);
-  //     }
-  //   );
-  // }, [categoriaId]);
-
   const getProductos = () => {
     setLoading(true);
     const db = getFirestore();
