@@ -43,10 +43,10 @@ const ItemDetail = ({ item }) => {
                                 <ItemCount initial={1} item={producto} onAdd={onAdd}/>
                             </div>
                             <div id="div-terminar-compra" style={{'display':'none'}}>
-                                <hr></hr>
-                                <Button variant="warning"><NavLink to={ `/carrito` }>
-                                <FontAwesomeIcon icon={faShoppingCart} />
-                                Termina tu Compra</NavLink></Button>
+                            <hr></hr>
+                                <Button variant="warning"><NavLink to={ `/` }><FontAwesomeIcon icon={faShoppingCart} />Seguir Comprando</NavLink></Button>
+                                <br></br><br></br>
+                                <NavLink to={'/carrito'}>Finalizar Compra</NavLink>
                                 <br></br>
                             </div>
                             <hr></hr>

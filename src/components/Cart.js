@@ -28,7 +28,7 @@ const Cart = () => {
            </Row>
       </Container>
       <br></br>
-      <p><b>Total Compra: $ {importeTotal}</b></p>     
+      <p><b>Total Compra: $ {importeTotal.toFixed(2)}</b></p>     
     </div>
   );
 };

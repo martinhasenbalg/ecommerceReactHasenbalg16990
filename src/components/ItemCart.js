@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
+import ItemCountMini from "./ItemCountMini";
 
 const ItemCart = ({ item, cantidad }) => {
   //console.log("producto", item);
@@ -12,8 +13,8 @@ const ItemCart = ({ item, cantidad }) => {
           <Card.Body>
             <Card.Title></Card.Title>
             <Card.Text>
-              <img src={item.imgUrl} width="50" height="50" alt={item.title} />
-                {item.title} - Cant: {cantidad} - Unit. $ { item.price } - SubTotal: ${cantidad * item.price} <Button variant="danger" onClick={ ()=>removeItem(item.id)}>X</Button>             
+            <img src={item.imgUrl} width="50" height="50" alt={item.title} />
+                {item.title} <ItemCountMini initial={cantidad} item={item}/> - Unit. $ { item.price } - SubTotal: ${cantidad * item.price} <Button variant="danger" onClick={ ()=>removeItem(item.id)}>X</Button>           
             </Card.Text>
           </Card.Body>
         </Card>

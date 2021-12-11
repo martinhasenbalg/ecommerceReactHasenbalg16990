@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown,faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
-const ItemCount = ({ initial, item, onAdd }) => {
+
+const ItemCountMini = ({ initial, item }) => {
   const [count, setCount] = useState(parseInt(initial));
   const [disponible] = useState(parseInt(item.stock));
-
+  const { addItem, removeItemCant } = useContext(CartContext);
+ 
   const sumar = () => {
     if (count < disponible) {
       setCount(count + 1);
+      addItem(item,1);      
     } else {
       Swal({
         title: 'Disponible',
         text: 'Ha superado la cantidad disponible',
         icon: 'error',
-        
+        confirmButtonText: 'Aceptar'
       })
     }
   };
@@ -22,6 +28,7 @@ const ItemCount = ({ initial, item, onAdd }) => {
   const restar = () => {
     if (count > 1) {
       setCount(count - 1);
+      removeItemCant(item.id,1);
     } else {
       return false;
     }
@@ -29,15 +36,11 @@ const ItemCount = ({ initial, item, onAdd }) => {
 
   return (
     <>
-      <Button variant="primary" className="linea button" size="sm" onClick={restar}>-</Button>
+      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={sumar} size={'2x'}/>
       <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
-      <Button variant="primary" className="linea button" size="sm" onClick={sumar}>+</Button>
-      <hr></hr>
-      <div style={{'textAlign':'center'}}>
-        <Button variant="primary" className="button-detail" onClick={() => onAdd(item, count)}>Agregar</Button>
-      </div>
+      <FontAwesomeIcon icon={ faAngleDoubleUp } onClick={restar} size={'2x'}/>
     </>
   );
 };
 
-export default ItemCount;
+export default ItemCountMini;
