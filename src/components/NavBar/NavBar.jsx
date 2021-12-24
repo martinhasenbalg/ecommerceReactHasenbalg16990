@@ -1,17 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import { NavLink } from 'react-router-dom';
-import { Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import { faHome, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { Container, Nav, Navbar, NavDropdown, Alert} from 'react-bootstrap';
+import { faHome, faAddressBook, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartWidget from '../CartWidget';
+import Login from './Login';
+
 
 const NavBar = () => {
 
-  const { items, cantidades } = useContext(CartContext);
+    const { cantidades,orderCreatedId, comprador, getCarritoStorage } = useContext(CartContext);
 
+    useEffect(() => {
+        if(cantidades<=0){
+        getCarritoStorage();}
+      }, [cantidades]);
     
-    return (
+    return (<div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
         <a> <img src="wine.png" width="30" height="30" className="d-inline-block align-top blogo" alt="logo" /> </a>
@@ -23,7 +29,9 @@ const NavBar = () => {
             <Nav.Link><NavLink to={ `/categoria/1` }>Vinos</NavLink></Nav.Link>
             <Nav.Link><NavLink to={ `/categoria/2` }>Cervezas</NavLink></Nav.Link>
             <Nav.Link><NavLink to={ `/categoria/3` }>Gourmet</NavLink></Nav.Link>
-            {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} /> { cantidades }</NavLink></Nav.Link>}
+            {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><CartWidget cant={cantidades}/></NavLink></Nav.Link>}
+            <Nav.Link><NavLink to={ `/contacto` }><FontAwesomeIcon icon={faAddressBook} /> Contáctenos</NavLink></Nav.Link>
+            <Login />
             <NavDropdown title="Mas" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Sobre Nosotros</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Promociones</NavDropdown.Item>
@@ -40,8 +48,11 @@ const NavBar = () => {
         </Navbar.Collapse>
         </Container>
         </Navbar>
+{orderCreatedId != null && <Alert key={orderCreatedId} variant='success'>Se ha generado su pedido # {orderCreatedId}</Alert>}
+<br></br>
+</div>
     )
-}
+};
 
 export default NavBar
 

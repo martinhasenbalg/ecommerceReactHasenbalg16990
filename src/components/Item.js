@@ -10,12 +10,13 @@ const Item = ({ mostrarCarrito, item }) => {
     const { addItem } = useContext(CartContext);
 
     function onAdd(producto, cantidad) {
-        addItem(producto,cantidad); //addItem este viene del context            
+        const respuesta = addItem(producto,cantidad);            
         Swal({
-            title: 'Item Agregado',
-            text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
-            icon: 'success',
-                });
+            title: respuesta.title,
+            text: respuesta.text,
+            icon: respuesta.icon,
+            confirmButtonText: 'Aceptar'
+        });
         mostrarCarrito(producto, cantidad);
     };
     
@@ -37,7 +38,7 @@ const Item = ({ mostrarCarrito, item }) => {
                             <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
                                 <ItemCount initial={1} item={producto} onAdd={onAdd} />
                             </div>
-                            <p>Disponibles: {producto.stock}</p>
+                            {producto.stock>0 && <p>Disponibles: {producto.stock}</p>}
                             <hr></hr>
                             </div>  
                         </Card.Text>

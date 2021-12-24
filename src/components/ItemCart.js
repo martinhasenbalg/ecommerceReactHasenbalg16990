@@ -4,7 +4,6 @@ import { CartContext } from "../context/CartContext";
 import ItemCountMini from "./ItemCountMini";
 
 const ItemCart = ({ item, cantidad }) => {
-  //console.log("producto", item);
   const { removeItem } = useContext(CartContext);
   return (
     <>

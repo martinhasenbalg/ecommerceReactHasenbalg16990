@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import Swal from 'sweetalert';
 
 const ItemCount = ({ initial, item, onAdd }) => {
@@ -27,6 +27,15 @@ const ItemCount = ({ initial, item, onAdd }) => {
     }
   };
 
+  if(disponible <=0 ){
+    return (
+      <>
+      <br></br>
+      <hr></hr>
+      <br></br>
+      <Alert key={item.id} variant='danger'>AGOTADO</Alert>
+      </>  );
+  }
   return (
     <>
       <Button variant="primary" className="linea button" size="sm" onClick={restar}>-</Button>
