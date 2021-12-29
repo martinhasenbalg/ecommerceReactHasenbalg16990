@@ -29,7 +29,7 @@ const Login = () => {
         window.location.reload();
       })
       .catch((err) => {
-        Swal.fire({
+        Swal({
           title: "Acceso Incorrecto",
           text: err,
           icon: "error",
@@ -59,23 +59,23 @@ const Login = () => {
   if (usuario==null) {
     return (
       <div>
-        <Form>
-          <Row>
-            <Col>
+        <Form className="form-inline">
+          <Row className="row-inline">
+            <Col xs={3}>
               <Form.Control
                 placeholder="Correo"
                 type="email"
                 onChange={(ev) => setEmail(ev.target.value)}
               />
             </Col>
-            <Col>
+            <Col xs={3}>
               <Form.Control
                 placeholder="Contraseña"
                 type="password"
                 onChange={(ev) => setPassword(ev.target.value)}
               />
             </Col>
-            <Col>
+            <Col xs={3}>
               <Button variant="success" onClick={() => ingresar()}>
                 Ingresar
               </Button>{" "}

@@ -5,7 +5,7 @@ import ItemDetailContainer from "../components/ItemDetailContainer";
 import Carrito from "../components/Cart";
 import NotFound from "../components/NotFound";
 import NavBar from "../components/NavBar/NavBar";
-import { Contactus } from "../components/Contactus";
+// import { Contactus } from "../components/Contactus";
 import Register from "../components/Register";
 import PedidosList from "../components/PedidosList";
 
@@ -18,7 +18,7 @@ const Router = () => {
                 <Route path="/categoria/:categoriaId" component={ItemListContainer} />
                 <Route path="/producto/:productoId" component={ItemDetailContainer} />
                 <Route path="/carrito" component={Carrito} />
-                <Route path="/contacto" component={Contactus} />
+                {/* <Route path="/contacto" component={Contactus} /> */}
                 <Route path="/registrarse" component={Register} />
                 <Route path="/mispedidos" component={PedidosList} />
                 <Route path="*" component={NotFound} />          

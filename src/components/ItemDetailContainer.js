@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-// import productos from "../Data/Productos";
 import { Container, Row } from "react-bootstrap";
 import Loading from "./Loading";
 import { getFirestore } from "../firebase/firebase";

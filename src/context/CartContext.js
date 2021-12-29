@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getFirestore } from "../firebase/firebase";
+import Swal from 'sweetalert';
 
 export const CartContext = createContext([]);
 
@@ -103,8 +104,12 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       }
       console.log('comprador1: ',buyer);
     }else{
-      alert('Debe estar registrado e iniciar sesión');
-      window.open('/registrarse','_self');
+      Swal({
+        title: "ERROR",
+        text: "LOGUEARSE O REGISTRARSE",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      })
       return false;
     }
   

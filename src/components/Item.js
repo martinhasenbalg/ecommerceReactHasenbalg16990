@@ -27,7 +27,7 @@ const Item = ({ mostrarCarrito, item }) => {
                     <Card.Body>
                         <Card.Title></Card.Title>
                         <Card.Text>
-                            <NavLink to={ `/producto/${producto.id}` }><span className="h3">{producto.title}</span></NavLink>
+                            <NavLink to={ `/producto/${producto.id}` }><span className="h5">{producto.title}</span></NavLink>
                             <p>Precio: $ {producto.price}</p>
                             <hr />
                             <div className="div-img-datos">

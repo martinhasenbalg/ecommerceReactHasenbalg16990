@@ -7,14 +7,12 @@ import Swal from 'sweetalert';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-
-
 const ItemDetail = ({ item }) => {   
     const [producto] = useState(item); 
     const { addItem } = useContext(CartContext);
     
     function onAdd(producto, cantidad) {
-        // console.log('itemDetail',producto);
+
         addItem(producto,cantidad);             
         Swal({
             title: 'Item Agregado',
@@ -39,7 +37,7 @@ const ItemDetail = ({ item }) => {
                             <p>Precio: $ {producto.price}</p>
                             <hr />
                             <div className="div-img-datos">
-                            <img src={producto.imgUrl} width="200" height="200" alt={producto.title} />
+                            <img src={producto.imgUrl} width="400" height="400" alt={producto.title} />
                             <br></br>
                             <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
                                 <ItemCount initial={1} item={producto} onAdd={onAdd}/>

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -47,4 +48,13 @@ div{
 .div-img-datos{
   text-align: center;
  }
+
+ .form-inline {
+   max-width: 75%;
+margin: auto;
+ }
+
+
+
+
 
